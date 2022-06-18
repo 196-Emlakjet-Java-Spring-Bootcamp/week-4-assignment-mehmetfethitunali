@@ -2,7 +2,7 @@ package com.example.week4.rabbit.consumer;
 import com.example.week4.dao.AdvertisementRepository;
 import com.example.week4.dao.UserRepository;
 import com.example.week4.entity.Advertisement;
-import com.example.week4.entity.User;
+import com.example.week4.entity.Users;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
 import java.util.Date;
@@ -20,29 +20,32 @@ public class RabbitConsumer {
     UserRepository userRepository;
     AdvertisementRepository advertisementRepository;
 
-    List<User> userList;
+    List<Users> usersList;
 
     @RabbitListener(queues = "queue1-queue")
-    public void handleOperation (User user) throws InterruptedException {
+    public void handleOperation (Users users) throws InterruptedException {
 
-        Thread.sleep(3000);
-        System.out.println("Message recieved...");
+        Thread.sleep(1000);
+        System.out.println("(User) Message recieved...");
 
-        user.builder()
+        users.builder()
                 .userName(name1[(int)(Math.random()*name1.length)])
                 .userSurname(name2[(int)(Math.random()*name2.length)])
-                .userMail(user.getUserName().toLowerCase() + user.getUserSurname().toLowerCase() + "@gmail.com")
+                .userMail(users.getUserName().toLowerCase() + users.getUserSurname().toLowerCase() + "@gmail.com")
                 .build();
-        userList.add(user);
-        userRepository.save(user);
+        usersList.add(users);
+        userRepository.save(users);
 
     }
 
     @RabbitListener(queues = "queue1-queue")
     public void handleOperation (Advertisement advertisement) throws InterruptedException {
 
+        Thread.sleep(1000);
+        System.out.println("(Advertisement) Message recieved...");
+
         advertisement.builder()
-                .user(userList.get((int)(Math.random()*userList.size())))
+                .users(usersList.get((int)(Math.random()* usersList.size())))
                 .title(title1[(int)(Math.random()*title1.length)] + ", " + title2[(int)(Math.random()*title2.length)])
                 .detailedMessage(description[(int)(Math.random()*description.length)] + ", "+description[(int)(Math.random()* description.length)])
                 .price((long)(Math.random()*3000000))

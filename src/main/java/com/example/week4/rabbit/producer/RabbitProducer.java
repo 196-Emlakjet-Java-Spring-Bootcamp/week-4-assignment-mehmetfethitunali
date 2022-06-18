@@ -1,6 +1,6 @@
 package com.example.week4.rabbit.producer;
 import com.example.week4.entity.Advertisement;
-import com.example.week4.entity.User;
+import com.example.week4.entity.Users;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,17 +16,17 @@ public class RabbitProducer {
     private RabbitTemplate rabbitTemplate;
     @Autowired
     private Queue queue;
-    public void sendToQueue (User user) {
+    public void sendToQueue (Users users) {
 
         System.out.println("User Creation sent to queue...");
-        rabbitTemplate.convertAndSend(queue.getName());
+        rabbitTemplate.convertAndSend(queue.getName(), users);
 
     }
 
     public void sendToQueue (Advertisement advertisement) {
 
         System.out.println("Advertisement Creation sent to queue...");
-        rabbitTemplate.convertAndSend(queue.getName());
+        rabbitTemplate.convertAndSend(queue.getName(), advertisement);
 
     }
 

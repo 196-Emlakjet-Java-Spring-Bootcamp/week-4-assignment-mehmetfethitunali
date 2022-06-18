@@ -1,5 +1,5 @@
 package com.example.week4.controller;
-import com.example.week4.entity.User;
+import com.example.week4.entity.Users;
 import com.example.week4.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +18,12 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAll(){
+    public ResponseEntity<List<Users>> getAll(){
         return new ResponseEntity<>(userService.getAll(), HttpStatus.ACCEPTED);
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(){
+    public ResponseEntity<Users> createUser(){
         if (userService.createUser()){
             return new ResponseEntity("User Created", HttpStatus.CREATED);
         } else {

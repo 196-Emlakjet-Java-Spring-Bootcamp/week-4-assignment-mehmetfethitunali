@@ -1,5 +1,5 @@
 package com.example.week4.service;
-import com.example.week4.entity.User;
+import com.example.week4.entity.Users;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,6 +8,6 @@ import java.util.List;
 public interface UserService {
     boolean createUser ();
 
-    List<User> getAll();
+    List<Users> getAll();
 
 }

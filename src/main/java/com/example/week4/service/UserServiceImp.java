@@ -1,6 +1,6 @@
 package com.example.week4.service;
 import com.example.week4.dao.UserRepository;
-import com.example.week4.entity.User;
+import com.example.week4.entity.Users;
 import com.example.week4.rabbit.producer.RabbitProducer;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +20,8 @@ public class UserServiceImp implements UserService{
     @Override
     public boolean createUser() {
         try {
-            User user = new User();
-            rabbitProducer.sendToQueue(user);
+            Users users = new Users();
+            rabbitProducer.sendToQueue(users);
             return true;
         } catch (Exception exception){
             return false;
@@ -29,7 +29,7 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
-    public List<User> getAll() {
+    public List<Users> getAll() {
         return userRepository.findAll();
     }
 }

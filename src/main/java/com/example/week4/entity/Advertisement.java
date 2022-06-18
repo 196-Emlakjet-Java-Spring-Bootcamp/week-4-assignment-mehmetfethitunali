@@ -20,7 +20,7 @@ public class Advertisement {
 
     @ManyToOne(cascade = CascadeType.PERSIST)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    private Users users;
 
     @Column(nullable = false)
     private String title;
