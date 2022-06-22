@@ -18,7 +18,7 @@ public class Advertisement {
     @Column(nullable = false, updatable = false)
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Users users;
 

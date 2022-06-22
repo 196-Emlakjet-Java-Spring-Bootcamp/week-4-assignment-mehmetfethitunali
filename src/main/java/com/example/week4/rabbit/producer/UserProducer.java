@@ -1,5 +1,4 @@
 package com.example.week4.rabbit.producer;
-import com.example.week4.entity.Advertisement;
 import com.example.week4.entity.Users;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -8,10 +7,10 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RabbitProducer {
+public class UserProducer {
 
-    @Value("${spring.rabbit.routing.name}")
-    private String routingName;
+    @Value("${spring.rabbit.queue1.name}")
+    private String queueName;
     @Autowired
     private RabbitTemplate rabbitTemplate;
     @Autowired
@@ -19,15 +18,10 @@ public class RabbitProducer {
     public void sendToQueue (Users users) {
 
         System.out.println("User Creation sent to queue...");
-        rabbitTemplate.convertAndSend(queue.getName(), users);
+        rabbitTemplate.convertAndSend(queueName,users);
 
     }
 
-    public void sendToQueue (Advertisement advertisement) {
 
-        System.out.println("Advertisement Creation sent to queue...");
-        rabbitTemplate.convertAndSend(queue.getName(), advertisement);
-
-    }
 
 }

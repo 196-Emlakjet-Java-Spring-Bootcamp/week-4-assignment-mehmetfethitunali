@@ -15,13 +15,13 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitMQConfig {
 
-    @Value("${spring.rabbit.queue.name}")
+    @Value("${spring.rabbit.queue1.name}")
     private String queueName;
 
-    @Value("${spring.rabbit.routing.name}")
+    @Value("${spring.rabbit.routing1.name}")
     private String routingName;
 
-    @Value("${spring.rabbit.exchange.name}")
+    @Value("${spring.rabbit.exchange1.name}")
     private String exchangeName;
 
     @Autowired
